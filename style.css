@@ -1,7 +1,10 @@
+body {
+  background: #bdd8d5;
+}
 .nav {
   display: flex;
   justify-content: space-around;
-  background-color: #fff;
+  background-color: #bdd8d5;
 }
 .section, .nav {
   max-width: 1200px;
