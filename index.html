@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>HTML Flow & Block Model</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+</head>
+<body>
+    <header class="nav">
+        <button class="success flow-button">Flow</button>
+        <button class="success sizing-button">Sizing</button>
+        <button class="success position-button">Position</button>
+    </header>
+
+
+
+
+
+
+    <main>
+
+        <section class="section flow-section">
+            <h1>HTML Flow</h1>
+            <article class="card">
+              <header>
+                <h2>Инструменты: 
+                  <label data-tooltip="Выберите какую блочность должны иметь элементы" for="model" class="label">Выбор модели</label>
+                  <label data-tooltip="Выберите какую обтекаемость должен иметь третий элемент" for="float" class="label">Обтекание</label>
+                </h2>
+              </header>
+              <div class="tools">
+                <select id="model" value="none">
+                  <option value="none">display: none</option>
+                  <option value="block">display: block</option>
+                  <option value="inline-block">display: inline-block</option>
+                  <option value="inline">display: inline</option>
+                </select>
+                <select id="float" value="none">
+                  <option value="none">float: none</option>
+                  <option value="left">float: left</option>
+                  <option value="right">float: right</option>
+                </select>
+              </div>
+            </article>
+
+            <article class="card">
+              <header>
+                <h2>
+                  Демонстрация:
+                  <label data-tooltip="Элементы выпали из потока, их как-будто нет" id="demo-model-label" for="model" class="label">display: none</label>
+                  <label data-tooltip="Никакого обтекания, обычный поток" id="demo-float-label" for="float" class="label">float: none</label>
+                </h2>
+              </header>
+              <div class="demo none" id="demo-model">
+                <div>Первый элемент</div>
+                <div>Второй элемент</div>
+                <div class="floating" id="floating">Третий элемент</div>
+                <div>Четвертый элемент</div>
+                <div>Пятый элемент</div>
+              </div>
+            </article>
+        </section>
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+    <footer class="nav">
+      <button class="success flow-button">Flow</button>
+      <button class="success sizing-button">Sizing</button>
+      <button class="success position-button">Position</button>
+    </footer>
+    <script src='./script.js'></script>
+</body>
+</html>

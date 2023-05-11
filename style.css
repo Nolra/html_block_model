@@ -1,0 +1,32 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+}
+.section, .nav {
+  max-width: 1200px;
+  padding: 20px;
+  margin: auto;
+}
+
+.demo {padding: 20px; color: #fff;}
+.demo div:nth-child(1) {background: #120d14;}
+.demo div:nth-child(2) {background: #2e2e39;}
+.demo div:nth-child(3) {background: #686a77;}
+.demo div:nth-child(4) {background: #c3b1bd;}
+.demo div:nth-child(5) {background: #b7c2d4;}
+
+.demo.none div {display: none;}
+.demo.block div {display: block;}
+.demo.inline-block div {display: inline-block;}
+.demo.inline div {display: inline;}
+.floating.none {float: none;}
+.floating.left {float: left;}
+.floating.right {float: right;}
+
+@media (max-width: 992px) {
+  .label {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
