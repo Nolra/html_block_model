@@ -45,6 +45,14 @@ const padding = document.querySelector('#padding'),
       marginBox = document.querySelector('.margin-box'),
       marginBoxSpan = document.querySelector('.margin-box > span'),
       
+
+      width = document.querySelector('#width'),
+      widthLabel = document.querySelector('#demo-width-label'),
+
+      height = document.querySelector('#height'),
+      heightLabel = document.querySelector('#demo-height-label'),
+
+      baseBox = document.querySelector('.base-box')
       sizingSize = document.querySelector('.sizing-size'),
       occupiedSize = document.querySelector('.occupied-size');
 
@@ -56,14 +64,24 @@ const changeSize = (name, event, input, label, span, box) => {
         input.value = 0;
         return false
     };
+
+    if (name === 'width' || name === 'height') {
+        box.style[name] = `${value}px`;
+    } else {
+        span.textContent = `${name}: ${value}px`
+        box.style.padding = `${value}px`;
+    }
+
     label.textContent = `${name}: ${value}px`
-    span.textContent = `${name}: ${value}px`
-    box.style.padding = `${value}px`;
-    
-    const size = padding.value * 2 + border.value * 2 + 200;
-    const occupied = margin.value * 2 + size;
-    sizingSize.textContent = `${size}px x ${size}px`;
-    occupiedSize.textContent = `${occupied}px x ${occupied}px`;
+
+    const widthSize = padding.value * 2 + border.value * 2 + baseBox.offsetWidth;
+    const heightSize = padding.value * 2 + border.value * 2 + baseBox.offsetHeight;
+
+    const widthOccupied = margin.value * 2 + widthSize;
+    const heightOccupied = margin.value * 2 + heightSize;
+
+    sizingSize.textContent = `${widthSize}px x ${heightSize}px`;
+    occupiedSize.textContent = `${widthOccupied}px x ${heightOccupied}px`;
 }
 
 padding.addEventListener(
@@ -81,3 +99,12 @@ margin.addEventListener(
     (event) => changeSize('margin', event, margin, marginLabel, marginBoxSpan, marginBox)
 );
 
+width.addEventListener(
+    'input', 
+    (event) => changeSize('width', event, width, widthLabel, null, baseBox)
+);
+
+height.addEventListener(
+    'input', 
+    (event) => changeSize('height', event, height, heightLabel, null, baseBox)
+);

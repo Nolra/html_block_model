@@ -57,7 +57,6 @@ body {
   flex-direction: column;
   line-height: 20px;
 }
-
 .padding-box,
 .border-box,
 .margin-box {
@@ -68,19 +67,18 @@ body {
   text-align: center;
   line-height: 0;
 }
-
-
 .padding-box, #padding {
   background: #c3d08b;
 }
-
 .border-box, #border {
   background: #fddd9b;
 }
 .margin-box, #margin {
   background: #f9cc9d;
 }
-
+#width, #height {
+  background: #8bb5bf;
+}
 .padding-box > span,
 .border-box > span,
 .margin-box > span {
