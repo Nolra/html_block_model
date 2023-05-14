@@ -30,3 +30,54 @@ float.addEventListener("change", (event) => {
 
 
 // HTML Sizing
+const padding = document.querySelector('#padding'),
+      paddingLabel = document.querySelector('#demo-padding-label'),
+      paddingBox = document.querySelector('.padding-box'),
+      paddingBoxSpan = document.querySelector('.padding-box > span'),
+
+      border = document.querySelector('#border'),
+      borderLabel = document.querySelector('#demo-border-label'),
+      borderBox = document.querySelector('.border-box'),
+      borderBoxSpan = document.querySelector('.border-box > span'),
+
+      margin = document.querySelector('#margin'),
+      marginLabel = document.querySelector('#demo-margin-label'),
+      marginBox = document.querySelector('.margin-box'),
+      marginBoxSpan = document.querySelector('.margin-box > span'),
+      
+      sizingSize = document.querySelector('.sizing-size'),
+      occupiedSize = document.querySelector('.occupied-size');
+
+const changeSize = (name, event, input, label, span, box) => {
+    const value = event.target.value;
+
+    if (value < 0) {
+        event.preventDefault();
+        input.value = 0;
+        return false
+    };
+    label.textContent = `${name}: ${value}px`
+    span.textContent = `${name}: ${value}px`
+    box.style.padding = `${value}px`;
+    
+    const size = padding.value * 2 + border.value * 2 + 200;
+    const occupied = margin.value * 2 + size;
+    sizingSize.textContent = `${size}px x ${size}px`;
+    occupiedSize.textContent = `${occupied}px x ${occupied}px`;
+}
+
+padding.addEventListener(
+    'input', 
+    (event) => changeSize('padding', event, padding, paddingLabel, paddingBoxSpan, paddingBox)
+);
+
+border.addEventListener(
+    'input', 
+    (event) => changeSize('border', event, border, borderLabel, borderBoxSpan, borderBox)
+);
+
+margin.addEventListener(
+    'input', 
+    (event) => changeSize('margin', event, margin, marginLabel, marginBoxSpan, marginBox)
+);
+

@@ -12,17 +12,24 @@ body {
   margin: auto;
 }
 
-.demo {padding: 20px; color: #fff;}
-.demo div:nth-child(1) {background: #120d14;}
-.demo div:nth-child(2) {background: #2e2e39;}
-.demo div:nth-child(3) {background: #686a77;}
-.demo div:nth-child(4) {background: #c3b1bd;}
-.demo div:nth-child(5) {background: #b7c2d4;}
 
-.demo.none div {display: none;}
-.demo.block div {display: block;}
-.demo.inline-block div {display: inline-block;}
-.demo.inline div {display: inline;}
+.demo {
+  padding: 20px; 
+  color: #fff;
+  text-align: center;
+}
+
+/* html flow */
+#demo-model div:nth-child(1) {background: #120d14;}
+#demo-model div:nth-child(2) {background: #2e2e39;}
+#demo-model div:nth-child(3) {background: #686a77;}
+#demo-model div:nth-child(4) {background: #c3b1bd;}
+#demo-model div:nth-child(5) {background: #b7c2d4;}
+
+#demo-model.none div {display: none;}
+#demo-model.block div {display: block;}
+#demo-model.inline-block div {display: inline-block;}
+#demo-model.inline div {display: inline;}
 .floating.none {float: none;}
 .floating.left {float: left;}
 .floating.right {float: right;}
@@ -32,4 +39,55 @@ body {
     margin-left: 0;
     margin-top: 10px;
   }
+}
+
+/* html sizes */
+.size-section .tools {
+  display: flex;
+}
+.base-box {
+  width: 200px;
+  height: 200px;
+  background: #8bb5bf;
+  display: flex;
+  color: #000;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 20px;
+}
+
+.padding-box,
+.border-box,
+.margin-box {
+  padding: 20px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  line-height: 0;
+}
+
+
+.padding-box, #padding {
+  background: #c3d08b;
+}
+
+.border-box, #border {
+  background: #fddd9b;
+}
+.margin-box, #margin {
+  background: #f9cc9d;
+}
+
+.padding-box > span,
+.border-box > span,
+.margin-box > span {
+  position: absolute;
+  color: #000;
+  width: 100%;
+  top: 0; left: 0;
+  font-size: 16px;
+  line-height: 20px;
 }
