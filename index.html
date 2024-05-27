@@ -15,112 +15,162 @@
         <button class="error position-button">Position</button>
     </header>
 
-
-
-
-
-
     <main>
+      <section class="section flow-section">
+        <h1>HTML Flow</h1>
+        <article class="card">
+          <header>
+            <h2>Инструменты: 
+              <label data-tooltip="Выберите какую блочность должны иметь элементы" for="model" class="label">Выбор модели</label>
+              <label data-tooltip="Выберите какую обтекаемость должен иметь третий элемент" for="float" class="label">Обтекание</label>
+            </h2>
+          </header>
+          <div class="tools">
+            <select id="model" value="none">
+              <option value="none">display: none</option>
+              <option value="block">display: block</option>
+              <option value="inline-block">display: inline-block</option>
+              <option value="inline">display: inline</option>
+            </select>
+            <select id="float" value="none">
+              <option value="none">float: none</option>
+              <option value="left">float: left</option>
+              <option value="right">float: right</option>
+            </select>
+          </div>
+        </article>
 
-        <section class="section flow-section">
-            <h1>HTML Flow</h1>
-            <article class="card">
-              <header>
-                <h2>Инструменты: 
-                  <label data-tooltip="Выберите какую блочность должны иметь элементы" for="model" class="label">Выбор модели</label>
-                  <label data-tooltip="Выберите какую обтекаемость должен иметь третий элемент" for="float" class="label">Обтекание</label>
-                </h2>
-              </header>
-              <div class="tools">
-                <select id="model" value="none">
-                  <option value="none">display: none</option>
-                  <option value="block">display: block</option>
-                  <option value="inline-block">display: inline-block</option>
-                  <option value="inline">display: inline</option>
-                </select>
-                <select id="float" value="none">
-                  <option value="none">float: none</option>
-                  <option value="left">float: left</option>
-                  <option value="right">float: right</option>
-                </select>
-              </div>
-            </article>
+        <article class="card">
+          <header>
+            <h2>
+              Демонстрация:
+              <label data-tooltip="Элементы выпали из потока, их как-будто нет" id="demo-model-label" for="model" class="label">display: none</label>
+              <label data-tooltip="Никакого обтекания, обычный поток" id="demo-float-label" for="float" class="label">float: none</label>
+            </h2>
+          </header>
+          <div class="demo none" id="demo-model">
+            <div>Первый элемент</div>
+            <div>Второй элемент</div>
+            <div class="floating" id="floating">Третий элемент</div>
+            <div>Четвертый элемент</div>
+            <div>Пятый элемент</div>
+          </div>
+        </article>
+      </section>
 
-            <article class="card">
-              <header>
-                <h2>
-                  Демонстрация:
-                  <label data-tooltip="Элементы выпали из потока, их как-будто нет" id="demo-model-label" for="model" class="label">display: none</label>
-                  <label data-tooltip="Никакого обтекания, обычный поток" id="demo-float-label" for="float" class="label">float: none</label>
-                </h2>
-              </header>
-              <div class="demo none" id="demo-model">
-                <div>Первый элемент</div>
-                <div>Второй элемент</div>
-                <div class="floating" id="floating">Третий элемент</div>
-                <div>Четвертый элемент</div>
-                <div>Пятый элемент</div>
-              </div>
-            </article>
-        </section>
+      <section class="section size-section">
+        <h1>HTML Sizes</h1>
+        <article class="card">
+          <header>
+            <h2>Инструменты: 
+              <label data-tooltip="Укажите величину внутреннего отступа" for="padding" class="label">padding</label>
+              <label data-tooltip="Укажите величину границы" for="border" class="label">border</label>
+              <label data-tooltip="Укажите величину внешнего отступа" for="margin" class="label">margin</label>
+              <label data-tooltip="Укажите ширину элемента" for="width" class="label">width</label>
+              <label data-tooltip="Укажите высоту элемента" for="height" class="label">height</label>
+            </h2>
+          </header>
+          <div class="tools">
+            <input type="number" id="padding" value="20"/>
+            <input type="number" id="border" value="20"/>
+            <input type="number" id="margin" value="20"/>
+            <input type="number" id="width" value="200"/>
+            <input type="number" id="height" value="200"/>
+          </div>
+        </article>
 
-
-        <section class="section size-section">
-          <h1>HTML Sizes</h1>
-          <article class="card">
-            <header>
-              <h2>Инструменты: 
-                <label data-tooltip="Укажите величину внутреннего отступа" for="padding" class="label">padding</label>
-                <label data-tooltip="Укажите величину границы" for="border" class="label">border</label>
-                <label data-tooltip="Укажите величину внешнего отступа" for="margin" class="label">margin</label>
-                <label data-tooltip="Укажите ширину элемента" for="width" class="label">width</label>
-                <label data-tooltip="Укажите высоту элемента" for="height" class="label">height</label>
-              </h2>
-            </header>
-            <div class="tools">
-              <input type="number" id="padding" value="20"/>
-              <input type="number" id="border" value="20"/>
-              <input type="number" id="margin" value="20"/>
-              <input type="number" id="width" value="200"/>
-              <input type="number" id="height" value="200"/>
-            </div>
-          </article>
-
-          <article class="card">
-            <header>
-              <h2>
-                Демонстрация:
-                <label data-tooltip="Внутренний отступ является частью элемента" id="demo-padding-label" for="padding" class="label">padding: 20px</label>
-                <label data-tooltip="Граница является частью элемента" id="demo-border-label" for="border" class="label">border: 20px</label>
-                <label data-tooltip="Внешний отступ не является частью элемента" id="demo-margin-label" for="margin" class="label">margin: 20px</label>
-                <label data-tooltip="Ширина элемента" id="demo-width-label" for="width" class="label">width: 200px</label>
-                <label data-tooltip="Высота элемента" id="demo-height-label" for="height" class="label">height: 200px</label>
-              </h2>
-            </header>
-            <div class="demo" id="demo-sizes">
-              <div class="margin-box">
-                <span>margin 20px</span>
-                <div class="border-box">
-                  <span>border 20px</span>
-                  <div class="padding-box">
-                    <span class="padding">padding 20px</span>
-                    <div class="base-box">
-                      sizing: <span class="sizing-size">280 x 280</span>
-                      <br>
-                      occupied: <span class="occupied-size">320 x 320</span>
-                    </div>
+        <article class="card">
+          <header>
+            <h2>
+              Демонстрация:
+              <label data-tooltip="Внутренний отступ является частью элемента" id="demo-padding-label" for="padding" class="label">padding: 20px</label>
+              <label data-tooltip="Граница является частью элемента" id="demo-border-label" for="border" class="label">border: 20px</label>
+              <label data-tooltip="Внешний отступ не является частью элемента" id="demo-margin-label" for="margin" class="label">margin: 20px</label>
+              <label data-tooltip="Ширина элемента" id="demo-width-label" for="width" class="label">width: 200px</label>
+              <label data-tooltip="Высота элемента" id="demo-height-label" for="height" class="label">height: 200px</label>
+            </h2>
+          </header>
+          <div class="demo" id="demo-sizes">
+            <div class="margin-box">
+              <span>margin 20px</span>
+              <div class="border-box">
+                <span>border 20px</span>
+                <div class="padding-box">
+                  <span class="padding">padding 20px</span>
+                  <div class="base-box">
+                    sizing: <span class="sizing-size">280 x 280</span>
+                    <br>
+                    occupied: <span class="occupied-size">320 x 320</span>
                   </div>
                 </div>
               </div>
             </div>
-          </article>
+          </div>
+        </article>
       </section>
+
+
+      <section class="section position-section">
+        <h1>HTML Position</h1>
+        <article class="card">
+          <header>
+            <h2>Position: 
+              <label data-tooltip="Выберите позиционирование" for="position" class="label">position</label>
+              <label data-tooltip="Укажите место на оси Z (z-index)" for="z-index" class="label">z-index</label>
+              <label data-tooltip="Укажите позиционирование слева от ближайшего relative или window" for="left" class="label">left</label>
+              <label data-tooltip="Укажите позиционирование сверху от ближайшего relative или window" for="top" class="label">top</label>
+            </h2>
+          </header>
+          <div class="tools">
+            <select id="position" value="none">
+              <option value="static">position: static</option>
+              <option value="relative">position: relative</option>
+              <option value="absolute">position: absolute</option>
+              <option value="fixed">position: fixed</option>
+              <option value="sticky">position: sticky</option>
+            </select>
+            <input type="number" id="z-index" value="0"/>
+            <input type="number" id="left" value="0"/>
+            <input type="number" id="top" value="0"/>
+          </div>
+        </article>
+        <article class="card">
+          <header>
+            <h2>
+              Демонстрация:
+              <label id="demo-position-label" data-tooltip="Статичное позиционирование, обычное положение элемента в потоке (z-index, left и top не работают)" for="position" class="label">position: static</label>
+              <label id="demo-z-index-label" data-tooltip="Текущее место на оси Z" for="z-index" class="label">z-index: 0</label>
+              <label id="demo-left-label" data-tooltip="Текущее расстояние слева от ближайшего relative родительского тега или от окна браузера" for="left" class="label">left: 0</label>
+              <label id="demo-top-label" data-tooltip="Текущее расстояние сверху от ближайшего relative родительского тега или от окна браузера" for="top" class="label">top: 0</label>
+            </h2>
+          </header>
+          <div class="demo" id="demo-position">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>            
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="position-target"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>            
+          </div>
+        </article>
+
+
+      </section>
+
+
+
     </main>
-
-
-
-
-
 
     <footer class="nav">
       <button class="success flow-button">Flow</button>

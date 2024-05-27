@@ -11,13 +11,16 @@ body {
   padding: 20px;
   margin: auto;
 }
-
-
 .demo {
   padding: 20px; 
   color: #fff;
   text-align: center;
 }
+[data-tooltip]:after {
+  white-space: normal;
+  min-width: 300px;
+}
+
 
 /* html flow */
 #demo-model div:nth-child(1) {background: #120d14;}
@@ -42,8 +45,9 @@ body {
 }
 
 /* html sizes */
-.size-section .tools {
+.tools {
   display: flex;
+  flex-grow: 1;
 }
 .base-box {
   width: 200px;
@@ -88,4 +92,22 @@ body {
   top: 0; left: 0;
   font-size: 16px;
   line-height: 20px;
+}
+
+/* html positions */
+#demo-position {
+  position: relative;
+}
+#demo-position div {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background: blueviolet;
+  left: 0;
+  top: 0;
+}
+#demo-position .position-target {
+  background: cadetblue;
+  opacity: .8;
+  width: 150px;
 }
