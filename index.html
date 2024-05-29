@@ -174,11 +174,12 @@
         <h1>HTML Flex</h1>
         <article class="card">
           <header>
-            <h2>Родительский контейнер
+            <h2>Родительский контейнер:
               <label data-tooltip="Выберите тип родительского контейнера" for="parentModel" class="label">Тип контейнера</label>
               <label data-tooltip="Выберите ось и направление в котором разместятся дочерние элементы" for="flex-direction" class="label">Ось и направление</label>
               <label data-tooltip="Выберите тип переноса дочерних элементов на другие строки" for="flex-wrap" class="label">Перенос элементов</label>
-              <label data-tooltip="Выберите тип позиционного выравнивания" for="justify-content" class="label">Позиционное выравнивание</label>
+              <label data-tooltip="Выберите тип позиционного выравнивания" for="justify-content" class="label">Позиция</label>
+              <label data-tooltip="Выберите тип позиционного выравнивания в поперечной оси (перпендикулярно justify-content)" for="align-items" class="label">Перпендикулярная позиция</label>
             </h2>
           </header>
           <div class="tools">
@@ -215,9 +216,17 @@
               <option value="space-evenly">justify-content: space-evenly</option>
               <option value="stretch">justify-content: stretch</option>
             </select>
+            <select id="align-items" value="flex-start">
+              <option value="flex-start">align-items: flex-start</option>
+              <option value="flex-end">align-items: flex-end</option>
+              <option value="center">align-items: center</option>
+              <option value="baseline">align-items: baseline</option>
+              <option value="stretch">align-items: stretch</option>
+            </select>
+
+
 
           <!--
-            align-items
             align-content 
           -->
 
@@ -240,8 +249,9 @@
               Демонстрация:
               <label data-tooltip="Обычный контейнер, дочерние элементы - блоки" id="demo-parentModel-label" for="parentModel" class="label">display: none</label>
               <label data-tooltip="Ось - X, направление слева - направо" id="demo-direction-label" for="flex-direction" class="label">flex-direction: row</label>
-              <label data-tooltip="Элементы не переносятся (все в одну строку)" id="demo-wrap-label" for="flex-wrap" class="label">flex-direction: nowrap</label>
+              <label data-tooltip="Элементы не переносятся (все в одну строку)" id="demo-wrap-label" for="flex-wrap" class="label">flex-wrap: nowrap</label>
               <label data-tooltip="Выравнивание флекс-элементов с начала" id="demo-justify-label" for="justify-content" class="label">justify-content: flex-start</label>
+              <label data-tooltip="Выравнивание элементов с начала в поперечной оси" id="demo-align-label" for="align-items" class="label">align-items: flex-start</label>
             </h2>
           </header>
           <div class="demo" id="demo-flex">
@@ -253,11 +263,6 @@
 
 
     </main>
-
-
-
-
-
     <footer class="nav">
       <button class="success flow-button">Flow</button>
       <button class="warning sizing-button">Sizing</button>

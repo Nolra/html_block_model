@@ -153,7 +153,9 @@ const demoFlex = document.querySelector('#demo-flex'),
       flexWrap = document.querySelector('#flex-wrap'),
       flexWrapLabel = document.querySelector('#demo-wrap-label'),
       justifyContent = document.querySelector('#justify-content'),
-      demoJustifyLabel = document.querySelector('#demo-justify-label');
+      demoJustifyLabel = document.querySelector('#demo-justify-label'),
+      alignItems = document.querySelector('#align-items'),
+      demoAlignLabel = document.querySelector('#demo-align-label');      
 
 parentModel.addEventListener('change', (e) => {
   demoFlex.style.display = e.target.value;
@@ -207,3 +209,14 @@ justifyContent.addEventListener('change', (e) => {
   }
 })
 
+alignItems.addEventListener('change', (e) => {
+  demoFlex.style.justifyContent = e.target.value;
+  demoAlignLabel.textContent = 'align-items: ' + e.target.value;
+  switch (e.target.value) {
+    case 'flex-end': demoAlignLabel.dataset.tooltip = 'Выравнивание элементов с конца в поперечной оси'; break;
+    case 'center': demoAlignLabel.dataset.tooltip = 'Центрирование элементов в поперечной оси'; break;
+    case 'baseline': demoAlignLabel.dataset.tooltip = 'Выровняйте базовые линии предметов'; break;
+    case 'stretch': demoAlignLabel.dataset.tooltip = 'Растянуть предметы в поперечной оси, чтобы соответствовать контейнеру'; break;
+    default: demoAlignLabel.dataset.tooltip = 'Выравнивание элементов с начала в поперечной оси'; break;
+  }
+})
