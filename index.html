@@ -13,6 +13,7 @@
         <button class="success flow-button">Flow</button>
         <button class="warning sizing-button">Sizing</button>
         <button class="error position-button">Position</button>
+        <button class="flex-button">Flex</button>
     </header>
 
     <main>
@@ -122,7 +123,7 @@
             </h2>
           </header>
           <div class="tools">
-            <select id="position" value="none">
+            <select id="position" value="static">
               <option value="static">position: static</option>
               <option value="relative">position: relative</option>
               <option value="absolute">position: absolute</option>
@@ -153,7 +154,9 @@
             <div></div>
             <div></div>
             <div></div>
+            <div class="position-absolute-1">z-index: 5</div>
             <div class="position-target"></div>
+            <div class="position-absolute-2">z-index: 6</div>
             <div></div>
             <div></div>
             <div></div>
@@ -164,18 +167,102 @@
             <div></div>            
           </div>
         </article>
-
-
       </section>
 
 
+      <section class="section flex-section">
+        <h1>HTML Flex</h1>
+        <article class="card">
+          <header>
+            <h2>Родительский контейнер
+              <label data-tooltip="Выберите тип родительского контейнера" for="parentModel" class="label">Тип контейнера</label>
+              <label data-tooltip="Выберите ось и направление в котором разместятся дочерние элементы" for="flex-direction" class="label">Ось и направление</label>
+              <label data-tooltip="Выберите тип переноса дочерних элементов на другие строки" for="flex-wrap" class="label">Перенос элементов</label>
+              <label data-tooltip="Выберите тип позиционного выравнивания" for="justify-content" class="label">Позиционное выравнивание</label>
+            </h2>
+          </header>
+          <div class="tools">
+            <select id="parentModel" value="block">
+              <option value="block">display: block</option>
+              <option value="flex">display: flex</option>
+            </select>
+            <select id="flex-direction" value="row">
+              <option value="row">flex-direction: row</option>
+              <option value="row-reverse">flex-direction: row-reverse</option>
+              <option value="column">flex-direction: row-column</option>
+              <option value="column-reverse">flex-direction: column-reverse</option>
+            </select>
+            <select id="flex-wrap" value="nowrap">
+              <option value="nowrap">flex-direction: nowrap</option>
+              <option value="wrap">flex-direction: wrap</option>
+              <option value="wrap-reverse">flex-direction: wrap-reverse</option>
+            </select>
+            <select id="justify-content" value="flex-start">
+              <option value="flex-start">justify-content: flex-start</option>
+              <option value="flex-end">justify-content: flex-end</option>
+              <option value="start">justify-content: start</option>
+              <option value="end">justify-content: end</option>
+              <option value="left">justify-content: left</option>
+              <option value="right">justify-content: right</option>
+              <option value="center">justify-content: center</option>
+              <option value="safe center">justify-content: safe center</option>
+              <option value="unsafe center">justify-content: unsafe center</option>
+              <option value="baseline">justify-content: baseline</option>
+              <option value="first baseline">justify-content: first baseline</option>
+              <option value="last baseline">justify-content: last baseline</option>
+              <option value="space-between">justify-content: space-between</option>
+              <option value="space-around">justify-content: space-around</option>
+              <option value="space-evenly">justify-content: space-evenly</option>
+              <option value="stretch">justify-content: stretch</option>
+            </select>
+
+          <!--
+            align-items
+            align-content 
+          -->
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </article>
+
+        <article class="card">
+          <header>
+            <h2>
+              Демонстрация:
+              <label data-tooltip="Обычный контейнер, дочерние элементы - блоки" id="demo-parentModel-label" for="parentModel" class="label">display: none</label>
+              <label data-tooltip="Ось - X, направление слева - направо" id="demo-direction-label" for="flex-direction" class="label">flex-direction: row</label>
+              <label data-tooltip="Элементы не переносятся (все в одну строку)" id="demo-wrap-label" for="flex-wrap" class="label">flex-direction: nowrap</label>
+              <label data-tooltip="Выравнивание флекс-элементов с начала" id="demo-justify-label" for="justify-content" class="label">justify-content: flex-start</label>
+            </h2>
+          </header>
+          <div class="demo" id="demo-flex">
+            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+            <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div> 
+          </div>
+        </article>
+      </section>
+
 
     </main>
+
+
+
+
 
     <footer class="nav">
       <button class="success flow-button">Flow</button>
       <button class="warning sizing-button">Sizing</button>
       <button class="error position-button">Position</button>
+      <button class="flex-button">Flex</button>
     </footer>
     <script src='./script.js'></script>
 </body>

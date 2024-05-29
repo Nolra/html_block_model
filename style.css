@@ -107,7 +107,77 @@ body {
   top: 0;
 }
 #demo-position .position-target {
-  background: cadetblue;
-  opacity: .8;
+  background: #ff4136;
   width: 150px;
+  text-align: center;
+}
+#demo-position .position-absolute-1 {
+  position: absolute;
+  z-index: 5;
+  background: rgb(43, 226, 86);
+  opacity: .8;
+  left: 10%;
+  top: 10%;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 100px;
+}
+#demo-position .position-absolute-2 {
+  position: absolute;
+  z-index: 6;
+  background: rgb(216, 219, 16);
+  opacity: .8;
+  left: 15%;
+  top: 15%;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 100px;
+}
+
+
+
+/* html flex */
+#demo-flex div {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  padding: 10px;
+}
+#demo-flex div:nth-child(1) {
+  background: blueviolet;
+  height: 200px;
+}
+#demo-flex div:nth-child(2) {
+  background: rgb(104, 43, 226);
+  height: 150px;
+}
+#demo-flex div:nth-child(3) {
+  background: rgb(121, 11, 55);
+  width: 300px;
+}
+#demo-flex div:nth-child(4) {
+  background: rgb(44, 6, 21);
+  height: 40px;
+  width: 100px;
+}
+#demo-flex div:nth-child(5) {
+  background: rgb(6, 44, 17);
+}
+#demo-flex div:nth-child(6) {
+  background: rgb(44, 44, 6);
+}
+#demo-flex div:nth-child(7) {
+  background: rgb(89, 89, 78);
+}
+#demo-flex div:nth-child(8) {
+  background: rgb(5, 84, 100);
+  width: 150px;
+}
+#demo-flex div:nth-child(9) {
+  background: rgb(159, 144, 15);
+  width: 150px;
+}
+#demo-flex div:nth-child(10) {
+  background: rgb(100, 5, 95);
+  height: 300px;
 }
