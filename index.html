@@ -179,13 +179,14 @@
               <label data-tooltip="Выберите ось и направление в котором разместятся дочерние элементы" for="flex-direction" class="label">Ось и направление</label>
               <label data-tooltip="Выберите тип переноса дочерних элементов на другие строки" for="flex-wrap" class="label">Перенос элементов</label>
               <label data-tooltip="Выберите тип позиционного выравнивания" for="justify-content" class="label">Позиция</label>
+              <label data-tooltip="Выберите тип распределения свободного пространства вдоль поперечной оси" for="align-content" class="label">Распределение пространства</label>
               <label data-tooltip="Выберите тип позиционного выравнивания в поперечной оси (перпендикулярно justify-content)" for="align-items" class="label">Перпендикулярная позиция</label>
             </h2>
           </header>
           <div class="tools">
-            <select id="parentModel" value="block">
-              <option value="block">display: block</option>
+            <select id="parentModel" value="flex">
               <option value="flex">display: flex</option>
+              <option value="block">display: block</option>
             </select>
             <select id="flex-direction" value="row">
               <option value="row">flex-direction: row</option>
@@ -194,9 +195,9 @@
               <option value="column-reverse">flex-direction: column-reverse</option>
             </select>
             <select id="flex-wrap" value="nowrap">
-              <option value="nowrap">flex-direction: nowrap</option>
-              <option value="wrap">flex-direction: wrap</option>
-              <option value="wrap-reverse">flex-direction: wrap-reverse</option>
+              <option value="nowrap">flex-wrap: nowrap</option>
+              <option value="wrap">flex-wrap: wrap</option>
+              <option value="wrap-reverse">flex-wrap: wrap-reverse</option>
             </select>
             <select id="justify-content" value="flex-start">
               <option value="flex-start">justify-content: flex-start</option>
@@ -216,6 +217,23 @@
               <option value="space-evenly">justify-content: space-evenly</option>
               <option value="stretch">justify-content: stretch</option>
             </select>
+            <select id="align-content" value="normal">
+              <option value="normal">align-content: normal</option>
+              <option value="flex-start">align-content: flex-start</option>
+              <option value="flex-end">align-content: flex-end</option>
+              <option value="start">align-content: start</option>
+              <option value="end">align-content: end</option>
+              <option value="center">align-content: center</option>
+              <option value="safe center">align-content: safe center</option>
+              <option value="unsafe center">align-content: unsafe center</option>
+              <option value="baseline">align-content: baseline</option>
+              <option value="first baseline">align-content: first baseline</option>
+              <option value="last baseline">align-content: last baseline</option>
+              <option value="space-between">align-content: space-between</option>
+              <option value="space-around">align-content: space-around</option>
+              <option value="space-evenly">align-content: space-evenly</option>
+              <option value="stretch">align-content: stretch</option>
+            </select>
             <select id="align-items" value="flex-start">
               <option value="flex-start">align-items: flex-start</option>
               <option value="flex-end">align-items: flex-end</option>
@@ -223,23 +241,6 @@
               <option value="baseline">align-items: baseline</option>
               <option value="stretch">align-items: stretch</option>
             </select>
-
-
-
-          <!--
-            align-content 
-          -->
-
-
-
-
-
-
-
-
-
-
-
           </div>
         </article>
 
@@ -247,10 +248,11 @@
           <header>
             <h2>
               Демонстрация:
-              <label data-tooltip="Обычный контейнер, дочерние элементы - блоки" id="demo-parentModel-label" for="parentModel" class="label">display: none</label>
+              <label data-tooltip="Flex контейнер, дочерние элементы - блоки" id="demo-parentModel-label" for="parentModel" class="label">display: none</label>
               <label data-tooltip="Ось - X, направление слева - направо" id="demo-direction-label" for="flex-direction" class="label">flex-direction: row</label>
               <label data-tooltip="Элементы не переносятся (все в одну строку)" id="demo-wrap-label" for="flex-wrap" class="label">flex-wrap: nowrap</label>
               <label data-tooltip="Выравнивание флекс-элементов с начала" id="demo-justify-label" for="justify-content" class="label">justify-content: flex-start</label>
+              <label data-tooltip="Нормальное выравнивание (отключено распределение свободного пространства)" id="demo-align-content-label" for="align-content" class="label">align-content: normal</label>
               <label data-tooltip="Выравнивание элементов с начала в поперечной оси" id="demo-align-label" for="align-items" class="label">align-items: flex-start</label>
             </h2>
           </header>

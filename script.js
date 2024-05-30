@@ -155,7 +155,9 @@ const demoFlex = document.querySelector('#demo-flex'),
       justifyContent = document.querySelector('#justify-content'),
       demoJustifyLabel = document.querySelector('#demo-justify-label'),
       alignItems = document.querySelector('#align-items'),
-      demoAlignLabel = document.querySelector('#demo-align-label');      
+      demoAlignLabel = document.querySelector('#demo-align-label')
+      alignСontent = document.querySelector('#align-content'),
+      demoAlignContentLabel = document.querySelector('#demo-align-content-label');      
 
 parentModel.addEventListener('change', (e) => {
   demoFlex.style.display = e.target.value;
@@ -220,3 +222,26 @@ alignItems.addEventListener('change', (e) => {
     default: demoAlignLabel.dataset.tooltip = 'Выравнивание элементов с начала в поперечной оси'; break;
   }
 })
+
+alignСontent.addEventListener('change', (e) => {
+  demoFlex.style.justifyContent = e.target.value;
+  demoAlignContentLabel.textContent = 'align-content: ' + e.target.value;
+  switch (e.target.value) {
+    case 'flex-end': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы flex в конце'; break;
+    case 'flex-right': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы flex в начале'; break;
+    case 'start': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы в начале'; break;
+    case 'end': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы в конце'; break;
+    case 'center': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы вокруг центра'; break;
+    case 'safe center': demoAlignContentLabel.dataset.tooltip = 'Выравнивание переполнения (overflow), выравнивание слева с обрезкой элемента'; break;
+    case 'unsafe center': demoAlignContentLabel.dataset.tooltip = 'Выравнивание переполнения (overflow) выравнивание по центру с обрезкой элемента'; break;
+    case 'baseline': demoAlignContentLabel.dataset.tooltip = 'Выравнивание по базовой линии'; break;
+    case 'first baseline': demoAlignContentLabel.dataset.tooltip = 'Выравнивание по базовой линии сверху'; break;
+    case 'last baseline': demoAlignContentLabel.dataset.tooltip = 'Выравнивание по базовой линии снизу'; break;
+    case 'space-between': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Первый элемент находится на одном уровне с началом, последней - совпадает с концом'; break;
+    case 'space-around': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Элементы имеют половинное пространство на каждом конце'; break;
+    case 'space-evenly': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Элементы имеют одинаковое пространство вокруг них'; break;
+    case 'stretch': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Растянуть auto-размерные элементы, чтобы заполнить контейнер'; break;
+    default: demoAlignContentLabel.dataset.tooltip = 'Выравнивание элементов с начала в поперечной оси'; break;
+  }
+})
+

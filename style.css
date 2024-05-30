@@ -26,6 +26,10 @@ select, input {
   flex-grow: 1;
 }
 
+.label, [data-tooltip]:after {
+  margin: 5px;
+}
+
 /* html flow */
 #demo-model div:nth-child(1) {background: #120d14;}
 #demo-model div:nth-child(2) {background: #2e2e39;}
