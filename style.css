@@ -145,6 +145,9 @@ select, input {
 
 
 /* html flex */
+#demo-flex {
+  display: flex;
+}
 #demo-flex div {
   width: 100px;
   height: 100px;
