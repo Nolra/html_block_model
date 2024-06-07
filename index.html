@@ -179,8 +179,8 @@
               <label data-tooltip="Выберите ось и направление в котором разместятся дочерние элементы" for="flex-direction" class="label">Ось и направление</label>
               <label data-tooltip="Выберите тип переноса дочерних элементов на другие строки" for="flex-wrap" class="label">Перенос элементов</label>
               <label data-tooltip="Выберите тип позиционного выравнивания" for="justify-content" class="label">Позиция</label>
-              <label data-tooltip="Выберите тип распределения свободного пространства вдоль поперечной оси" for="align-content" class="label">Распределение пространства</label>
               <label data-tooltip="Выберите тип позиционного выравнивания в поперечной оси (перпендикулярно justify-content)" for="align-items" class="label">Перпендикулярная позиция</label>
+              <label data-tooltip="Выберите тип распределения свободного пространства вдоль поперечной оси" for="align-content" class="label">Распределение пространства</label>
             </h2>
           </header>
           <div class="tools">
@@ -217,6 +217,13 @@
               <option value="space-evenly">justify-content: space-evenly</option>
               <option value="stretch">justify-content: stretch</option>
             </select>
+            <select id="align-items" value="flex-start">
+              <option value="flex-start">align-items: flex-start</option>
+              <option value="flex-end">align-items: flex-end</option>
+              <option value="center">align-items: center</option>
+              <option value="baseline">align-items: baseline</option>
+              <option value="stretch">align-items: stretch</option>
+            </select>
             <select id="align-content" value="normal">
               <option value="normal">align-content: normal</option>
               <option value="flex-start">align-content: flex-start</option>
@@ -234,12 +241,86 @@
               <option value="space-evenly">align-content: space-evenly</option>
               <option value="stretch">align-content: stretch</option>
             </select>
-            <select id="align-items" value="flex-start">
-              <option value="flex-start">align-items: flex-start</option>
-              <option value="flex-end">align-items: flex-end</option>
-              <option value="center">align-items: center</option>
-              <option value="baseline">align-items: baseline</option>
-              <option value="stretch">align-items: stretch</option>
+          </div>
+        </article>
+        <article class="card">
+          <header>
+            <h2>Дочерний элемент №5:
+              <label 
+                data-tooltip="Выберите место элемента, относительно других элементов с выбранным порядковым номером (или всех остальных элементов без порядковых номеров)" 
+                for="order5" class="label"
+              >Порядок</label>
+              <label 
+                data-tooltip="Выберите увеличение элемента относительно других элементов (задайте контейнеру flex-wrap: wrap, чтобы увидеть изменения)" 
+                for="grow5" class="label"
+              >Увеличение</label>
+              <label 
+                data-tooltip="Выберите уменьшение элемента относительно других элементов (задайте контейнеру flex-wrap: wrap, чтобы увидеть изменения)" 
+                for="shrink5" class="label"
+              >Уменьшение</label>
+              <label 
+                data-tooltip="Выберите размер flex элемента в px (width это или height зависит от flex-direction контейнера)" 
+                for="basis5" class="label"
+              >Размер</label>
+              <label 
+                data-tooltip="Выберите положение flex элемента относительно контейнера" 
+                for="self5" class="label"
+              >Положение</label>
+            </h2>
+          </header>
+          <div class="tools">
+            <input type="number" id="order5" value="0"/>
+            <input type="number" id="grow5" value="0"/>
+            <input type="number" id="shrink5" value="1"/>
+            <input type="number" id="basis5" value="100"/>
+            <select id="self5" value="auto">
+              <option value="auto">align-self: auto</option>
+              <option value="stretch">align-self: stretch</option>
+              <option value="center">align-self: center</option>
+              <option value="flex-start">align-self: flex-start</option>
+              <option value="flex-end">align-self: flex-end</option>
+              <option value="baseline">align-self: baseline</option>
+            </select>
+          </div>
+        </article>
+
+        <article class="card">
+          <header>
+            <h2>Дочерний элемент №6:
+              <label 
+                data-tooltip="Выберите место элемента, относительно других элементов с выбранным порядковым номером (или всех остальных элементов без порядковых номеров)" 
+                for="order6" class="label"
+              >Порядок</label>
+              <label 
+                data-tooltip="Выберите увеличение элемента относительно других элементов (задайте контейнеру flex-wrap: wrap, чтобы увидеть изменения)" 
+                for="grow6" class="label"
+              >Увеличение</label>
+              <label 
+                data-tooltip="Выберите увеличение элемента относительно других элементов (задайте контейнеру flex-wrap: wrap, чтобы увидеть изменения)" 
+                for="shrink6" class="label"
+              >Уменьшение</label>
+              <label 
+                data-tooltip="Выберите размер flex элемента в px (width это или height зависит от flex-direction контейнера)" 
+                for="basis6" class="label"
+              >Размер</label>
+              <label 
+                data-tooltip="Выберите положение flex элемента относительно контейнера" 
+                for="self6" class="label"
+              >Положение</label>
+            </h2>
+          </header>
+          <div class="tools">
+            <input type="number" id="order6" value="0"/>
+            <input type="number" id="grow6" value="0"/>
+            <input type="number" id="shrink6" value="1"/>
+            <input type="number" id="basis6" value="100"/>
+            <select id="self6" value="auto">
+              <option value="auto">align-self: auto</option>
+              <option value="stretch">align-self: stretch</option>
+              <option value="center">align-self: center</option>
+              <option value="flex-start">align-self: flex-start</option>
+              <option value="flex-end">align-self: flex-end</option>
+              <option value="baseline">align-self: baseline</option>
             </select>
           </div>
         </article>
@@ -247,23 +328,41 @@
         <article class="card">
           <header>
             <h2>
-              Демонстрация:
-              <label data-tooltip="Flex контейнер, дочерние элементы - блоки" id="demo-parentModel-label" for="parentModel" class="label">display: flex</label>
+              Стили родителя:
+              <label data-tooltip="Flex контейнер, дочерние элементы - flexible (flex) items" id="demo-parentModel-label" for="parentModel" class="label">display: flex</label>
               <label data-tooltip="Ось - X, направление слева - направо" id="demo-direction-label" for="flex-direction" class="label">flex-direction: row</label>
               <label data-tooltip="Элементы не переносятся (все в одну строку)" id="demo-wrap-label" for="flex-wrap" class="label">flex-wrap: nowrap</label>
               <label data-tooltip="Выравнивание флекс-элементов с начала" id="demo-justify-label" for="justify-content" class="label">justify-content: flex-start</label>
-              <label data-tooltip="Нормальное выравнивание (отключено распределение свободного пространства)" id="demo-align-content-label" for="align-content" class="label">align-content: normal</label>
               <label data-tooltip="Выравнивание элементов с начала в поперечной оси" id="demo-align-label" for="align-items" class="label">align-items: flex-start</label>
+              <label data-tooltip="Нормальное выравнивание (отключено распределение свободного пространства)" id="demo-align-content-label" for="align-content" class="label">align-content: normal</label>
+            </h2>
+          </header>
+          <header>
+            <h2>
+              Стили элемента №5:
+              <label data-tooltip="Нормальный порядок, элемент не поменял свое место" id="demo-order-label5" for="order5" class="label">order: 0</label>
+              <label data-tooltip="Дефолтный размер элемента" id="demo-grow-label5" for="grow5" class="label">flex-grow: 0</label>
+              <label data-tooltip="Дефолтный размер элемента" id="demo-shrink-label5" for="shrink5" class="label">flex-shrink: 1</label>
+              <label data-tooltip="Дефолтный размер элемента" id="demo-basis-label5" for="basis5" class="label">flex-basis: 100</label>
+              <label data-tooltip="Поведение по умолчанию (растягивается, если это свойство нельзя унаследовать от контейнера)" id="demo-self-label5" for="self5" class="label">align-self: auto</label>
+            </h2>
+          </header>
+          <header>
+            <h2>
+              Стили элемента №6:
+              <label data-tooltip="Нормальный порядок, элемент не поменял свое место" id="demo-order-label6" for="order6" class="label">order: 0</label>
+              <label data-tooltip="Дефолтный размер элемента" id="demo-grow-label6" for="grow6" class="label">flex-grow: 0</label>
+              <label data-tooltip="Дефолтный размер элемента" id="demo-shrink-label6" for="shrink6" class="label">flex-shrink: 1</label>
+              <label data-tooltip="Дефолтный размер элемента" id="demo-basis-label6" for="basis6" class="label">flex-basis: 100</label>
+              <label data-tooltip="Поведение по умолчанию (растягивается, если это свойство нельзя унаследовать от контейнера)" id="demo-self-label6" for="self6" class="label">align-self: auto</label>
             </h2>
           </header>
           <div class="demo" id="demo-flex">
-            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
-            <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div> 
+            <div>1</div><div>2</div><div>3</div><div>4</div><div id="flexible-target5">5</div>
+            <div id="flexible-target6">6</div><div>7</div><div>8</div><div>9</div><div>10</div> 
           </div>
         </article>
       </section>
-
-
     </main>
     <footer class="nav">
       <button class="success flow-button">Flow</button>

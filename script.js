@@ -1,3 +1,17 @@
+// helpers
+const numberHandler = (e, target, labelTarget, isDefault, rule, ruleCamelCase, defaultText, text, isPx) => {
+  target.style[ruleCamelCase] = e.target.value + (isPx ? 'px' : '');
+  console.log(target)
+  labelTarget.textContent = rule + ': ' + e.target.value;
+  if (isDefault) labelTarget.dataset.tooltip = defaultText;
+  else labelTarget.dataset.tooltip = text + e.target.value; 
+}
+const selectHandler = (e, target, labelTarget, rule, ruleCamelCase, caseObject) => {
+  target.style[ruleCamelCase] = e.target.value;
+  labelTarget.textContent = rule + ': ' + e.target.value;
+  labelTarget.dataset.tooltip = caseObject[e.target.value];
+}
+
 // Navigation
 const flowSection = document.querySelector(".flow-section");
 const sizeSection = document.querySelector(".size-section");
@@ -19,8 +33,6 @@ navs.forEach(nav => {
   })
 });
 
-
-
 // HTML Flow
 // tools
 const model = document.querySelector("#model"),
@@ -31,25 +43,22 @@ const demoModel = document.querySelector("#demo-model"),
       demoModelLabel = document.querySelector("#demo-model-label"),
       demoFloatLabel = document.querySelector("#demo-float-label");
 // select events
-model.addEventListener("change", (event) => {
-  const value = event.target.value;
-  demoModel.className = "demo " + value;
-  demoModelLabel.textContent = "display: " + value;
-  if (value === "none") demoModelLabel.dataset.tooltip = "Элементы выпали из потока, их как-будто нет";
-  else if (value === "block") demoModelLabel.dataset.tooltip = "Элементы стали блоками, заняли максимальную ширину в строке, отодвинули другие элементы ниже";
-  else if (value === "inline-block") demoModelLabel.dataset.tooltip = "Элементы стали инлайн-блоками, они выстроились друг за другом как слова в предложении, но не потеряли своих размеров";
-  else if (value === "inline") demoModelLabel.dataset.tooltip = "Элементы стали инлайн-блоками, они выстроились друг за другом как слова в предложении, и потеряли свои размеры";
+const modelCases = {
+  'none': "Элементы выпали из потока, их как-будто нет",
+  'block': "Элементы стали блоками, заняли максимальную ширину в строке, отодвинули другие элементы ниже",
+  'inline-block': "Элементы стали инлайн-блоками, они выстроились друг за другом как слова в предложении, но не потеряли своих размеров",
+  'inline': "Элементы стали инлайн-блоками, они выстроились друг за другом как слова в предложении, и потеряли свои размеры",
+};
+model.addEventListener('change', (e) => {
+  demoModel.className = "demo " + e.target.value;
+  selectHandler(e, floating, demoModelLabel, "display", "display", modelCases);
 });
-float.addEventListener("change", (event) => {
-  const value = event.target.value;
-  floating.className = "floating " + value;
-  demoFloatLabel.textContent = "float: " + value;
-  if (value === "none") demoFloatLabel.dataset.tooltip = "Никакого обтекания, обычный поток";
-  else if (value === "left") demoFloatLabel.dataset.tooltip = "Третий элемент прижался к левому краю, его обтекает справа";
-  else if (value === "right") demoFloatLabel.dataset.tooltip = "Третий элемент прижался к правому краю, его обтекает слева";
-});
-
-
+const floatCases = {
+  'none': 'Никакого обтекания, обычный поток',
+  'left': 'Третий элемент прижался к левому краю, его обтекает справа',
+  'right': 'Третий элемент прижался к правому краю, его обтекает слева',
+};
+float.addEventListener('change', (e) => selectHandler(e, floating, demoFloatLabel, "float", "float", floatCases));
 
 // HTML Sizing
 const padding = document.querySelector('#padding'),
@@ -93,14 +102,11 @@ const changeSize = (name, event, input, label, span, box) => {
     sizingSize.textContent = `${widthSize}px x ${heightSize}px`;
     occupiedSize.textContent = `${widthOccupied}px x ${heightOccupied}px`;
 }
-
 padding.addEventListener('input', (event) => changeSize('padding', event, padding, paddingLabel, paddingBoxSpan, paddingBox));
 border.addEventListener('input', (event) => changeSize('border', event, border, borderLabel, borderBoxSpan, borderBox));
 margin.addEventListener('input', (event) => changeSize('margin', event, margin, marginLabel, marginBoxSpan, marginBox));
 width.addEventListener('input', (event) => changeSize('width', event, width, widthLabel, null, baseBox));
 height.addEventListener('input', (event) => changeSize('height', event, height, heightLabel, null, baseBox));
-
-
 
 // HTML Position
 const position = document.querySelector('#position'),
@@ -143,9 +149,9 @@ topPos.addEventListener('input', (e) => {
   demoTopLabel.textContent = 'top: ' + e.target.value
 });
 
-
 // HTML Flex
 const demoFlex = document.querySelector('#demo-flex'),
+      // flex container
       parentModel = document.querySelector('#parentModel'),
       demoParentModelLabel = document.querySelector('#demo-parentModel-label'),
       flexDirection = document.querySelector('#flex-direction'),
@@ -157,91 +163,119 @@ const demoFlex = document.querySelector('#demo-flex'),
       alignItems = document.querySelector('#align-items'),
       demoAlignLabel = document.querySelector('#demo-align-label')
       alignСontent = document.querySelector('#align-content'),
-      demoAlignContentLabel = document.querySelector('#demo-align-content-label');      
-
-parentModel.addEventListener('change', (e) => {
-  demoFlex.style.display = e.target.value;
-  demoParentModelLabel.textContent = 'display: ' + e.target.value;
-  switch (e.target.value) {
-    case 'flex': demoParentModelLabel.dataset.tooltip = 'Flex контейнер, дочерние элементы - блоки'; break;
-    default: demoParentModelLabel.dataset.tooltip = 'Обычный контейнер, дочерние элементы - блоки'; break;
-  }
-})
-flexDirection.addEventListener('change', (e) => {
-  demoFlex.style.flexDirection = e.target.value;
-  flexDirectionLabel.textContent = 'flex-direction: ' + e.target.value;
-  switch (e.target.value) {
-    case 'row-reverse': flexDirectionLabel.dataset.tooltip = 'Ось - X, направление справа - налево'; break;
-    case 'column': flexDirectionLabel.dataset.tooltip = 'Ось - Y, направление сверху - вниз'; break;
-    case 'column-reverse': flexDirectionLabel.dataset.tooltip = 'Ось - Y, направление снизу - вверх'; break;
-    default: flexDirectionLabel.dataset.tooltip = 'Ось - X, направление слева - направо'; break;
-  }
-})
-
-flexWrap.addEventListener('change', (e) => {
-  demoFlex.style.flexWrap = e.target.value;
-  flexWrapLabel.textContent = 'flex-wrap: ' + e.target.value;
-  switch (e.target.value) {
-    case 'wrap': flexWrapLabel.dataset.tooltip = 'Элементы переносятся, насколько требует того их ширина и размер контейнера, порядок сверху - вниз'; break;
-    case 'wrap-reverse': flexWrapLabel.dataset.tooltip = 'Элементы переносятся, насколько требует того их ширина и размер контейнера, порядок снизу - вверх'; break;
-    default: flexWrapLabel.dataset.tooltip = 'Элементы не переносятся (все в одну строку)'; break;
-  }
-})
-
-justifyContent.addEventListener('change', (e) => {
-  demoFlex.style.justifyContent = e.target.value;
-  demoJustifyLabel.textContent = 'justify-content: ' + e.target.value;
-  switch (e.target.value) {
-    case 'flex-end': demoJustifyLabel.dataset.tooltip = 'Выравнивание флекс-элементов с конца'; break;
-    case 'start': demoJustifyLabel.dataset.tooltip = 'Выравнивание элементов в начале'; break;
-    case 'end': demoJustifyLabel.dataset.tooltip = 'Выравнивание элементов в конце'; break;
-    case 'left': demoJustifyLabel.dataset.tooltip = 'Выравнивание элементов по левому краю'; break;
-    case 'right': demoJustifyLabel.dataset.tooltip = 'Выравнивание элементов по правому краю'; break;
-    case 'center': demoJustifyLabel.dataset.tooltip = 'Выравнивание элементов по центру'; break;
-    case 'safe center': demoJustifyLabel.dataset.tooltip = 'Выравнивание элементов по центру, если элемент не помещается в контейнер то он выравнивается по левому краю в обычном порядке'; break;
-    case 'unsafe center': demoJustifyLabel.dataset.tooltip = 'Выравнивание элементов по центру, если элемент не помещается в контейнер то он все равно выравнивается по центру'; break;
-    case 'baseline': demoJustifyLabel.dataset.tooltip = 'Выравнивание относительно осевой линии'; break;
-    case 'first baseline': demoJustifyLabel.dataset.tooltip = 'Выравнивание относительно осевой линии, с flex-start ориентацией'; break;
-    case 'last baseline': demoJustifyLabel.dataset.tooltip = 'Выравнивание относительно осевой линии, с flex-end ориентацией'; break;
-    case 'space-between': demoJustifyLabel.dataset.tooltip = 'Равномерно распределяет все элементы по ширине flex-блока. Первый элемент вначале, последний в конце'; break;
-    case 'space-around': demoJustifyLabel.dataset.tooltip = 'Равномерно распределяет все элементы по ширине flex-блока. Все элементы имеют полноразмерное пространство с обоих концов'; break;
-    case 'space-evenly': demoJustifyLabel.dataset.tooltip = 'Равномерно распределяет все элементы по ширине flex-блока. Все элементы имеют равное пространство вокруг'; break;
-    case 'stretch': demoJustifyLabel.dataset.tooltip = 'Равномерно распределяет все элементы по ширине flex-блока. Все элементы имеют "авто-размер", чтобы соответствовать контейнеру'; break;
-    default: demoJustifyLabel.dataset.tooltip = 'Выравнивание флекс-элементов с начала'; break;
-  }
-})
-
-alignItems.addEventListener('change', (e) => {
-  demoFlex.style.justifyContent = e.target.value;
-  demoAlignLabel.textContent = 'align-items: ' + e.target.value;
-  switch (e.target.value) {
-    case 'flex-end': demoAlignLabel.dataset.tooltip = 'Выравнивание элементов с конца в поперечной оси'; break;
-    case 'center': demoAlignLabel.dataset.tooltip = 'Центрирование элементов в поперечной оси'; break;
-    case 'baseline': demoAlignLabel.dataset.tooltip = 'Выровняйте базовые линии предметов'; break;
-    case 'stretch': demoAlignLabel.dataset.tooltip = 'Растянуть предметы в поперечной оси, чтобы соответствовать контейнеру'; break;
-    default: demoAlignLabel.dataset.tooltip = 'Выравнивание элементов с начала в поперечной оси'; break;
-  }
-})
-
-alignСontent.addEventListener('change', (e) => {
-  demoFlex.style.justifyContent = e.target.value;
-  demoAlignContentLabel.textContent = 'align-content: ' + e.target.value;
-  switch (e.target.value) {
-    case 'flex-end': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы flex в конце'; break;
-    case 'flex-right': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы flex в начале'; break;
-    case 'start': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы в начале'; break;
-    case 'end': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы в конце'; break;
-    case 'center': demoAlignContentLabel.dataset.tooltip = 'Расположить элементы вокруг центра'; break;
-    case 'safe center': demoAlignContentLabel.dataset.tooltip = 'Выравнивание переполнения (overflow), выравнивание слева с обрезкой элемента'; break;
-    case 'unsafe center': demoAlignContentLabel.dataset.tooltip = 'Выравнивание переполнения (overflow) выравнивание по центру с обрезкой элемента'; break;
-    case 'baseline': demoAlignContentLabel.dataset.tooltip = 'Выравнивание по базовой линии'; break;
-    case 'first baseline': demoAlignContentLabel.dataset.tooltip = 'Выравнивание по базовой линии сверху'; break;
-    case 'last baseline': demoAlignContentLabel.dataset.tooltip = 'Выравнивание по базовой линии снизу'; break;
-    case 'space-between': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Первый элемент находится на одном уровне с началом, последней - совпадает с концом'; break;
-    case 'space-around': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Элементы имеют половинное пространство на каждом конце'; break;
-    case 'space-evenly': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Элементы имеют одинаковое пространство вокруг них'; break;
-    case 'stretch': demoAlignContentLabel.dataset.tooltip = 'Распределить элементы равномерно. Растянуть auto-размерные элементы, чтобы заполнить контейнер'; break;
-    default: demoAlignContentLabel.dataset.tooltip = 'Выравнивание элементов с начала в поперечной оси'; break;
-  }
-})
-
+      demoAlignContentLabel = document.querySelector('#demo-align-content-label'),
+      // flex items
+      flexibleTarget5 = document.querySelector('#flexible-target5'),
+      flexibleTarget6 = document.querySelector('#flexible-target6'),
+      order5 = document.querySelector('#order5'),
+      order6 = document.querySelector('#order6'),
+      demoOrderLabel5 = document.querySelector('#demo-order-label5'),
+      demoOrderLabel6 = document.querySelector('#demo-order-label6'),
+      grow5 = document.querySelector('#grow5'),
+      grow6 = document.querySelector('#grow6'),
+      demoGrowLabel5 = document.querySelector('#demo-grow-label5'),
+      demoGrowLabel6 = document.querySelector('#demo-grow-label6'),
+      shrink5 = document.querySelector('#shrink5'),
+      shrink6 = document.querySelector('#shrink6'),
+      demoShrinkLabel5 = document.querySelector('#demo-shrink-label5'),
+      demoShrinkLabel6 = document.querySelector('#demo-shrink-label6'),
+      basis5 = document.querySelector('#basis5'),
+      basis6 = document.querySelector('#basis6'),
+      demoBasisLabel5 = document.querySelector('#demo-basis-label5'),
+      demoBasisLabel6 = document.querySelector('#demo-basis-label6'),
+      alignSelf5 = document.querySelector('#self5'),
+      alignSelf6 = document.querySelector('#self6'),
+      demoAlignSelfLabel5 = document.querySelector('#demo-self-label5'),
+      demoAlignSelfLabel6 = document.querySelector('#demo-self-label6');
+// flex container
+const parentModelCases = {
+  'flex': 'Flex контейнер, дочерние элементы - flexible (flex) items',
+  'block': 'Обычный контейнер, дочерние элементы - блоки',
+};
+parentModel.addEventListener('change', (e) => selectHandler(e, demoFlex, demoParentModelLabel, "display", "display", parentModelCases));
+const flexDirectionCases = {
+  'row': 'Ось - X, направление слева - направо',
+  'row-reverse': 'Ось - X, направление справа - налево',
+  'column': 'Ось - Y, направление сверху - вниз',
+  'column-reverse': 'Ось - Y, направление снизу - вверх',
+};
+flexDirection.addEventListener('change', (e) => selectHandler(e, demoFlex, flexDirectionLabel, "flex-direction", "flexDirection", flexDirectionCases));
+const flexWrapCases = {
+  'wrap': 'Элементы переносятся, насколько требует того их ширина и размер контейнера, порядок сверху - вниз',
+  'wrap-reverse': 'Элементы переносятся, насколько требует того их ширина и размер контейнера, порядок снизу - вверх',
+  'nowrap': 'Элементы не переносятся (все в одну строку)',
+};
+flexWrap.addEventListener('change', (e) => selectHandler(e, demoFlex, flexWrapLabel, "flex-wrap", "flexWrap", flexWrapCases));
+const justifyContentCases = {
+  'flex-start': 'Выравнивание флекс-элементов с начала',
+  'flex-end': 'Выравнивание флекс-элементов с конца',
+  'start': 'Выравнивание элементов в начале',
+  'end': 'Выравнивание элементов в конце',
+  'left': 'Выравнивание элементов по левому краю',
+  'right': 'Выравнивание элементов по правому краю',
+  'center': 'Выравнивание элементов по центру',
+  'safe center': 'Выравнивание элементов по центру, если элемент не помещается в контейнер то он выравнивается по левому краю в обычном порядке',
+  'unsafe center': 'Выравнивание элементов по центру, если элемент не помещается в контейнер то он все равно выравнивается по центру',
+  'baseline': 'Выравнивание относительно осевой линии',
+  'first baseline': 'Выравнивание относительно осевой линии, с flex-start ориентацией',
+  'last baseline': 'Выравнивание относительно осевой линии, с flex-end ориентацией',
+  'space-between': 'Равномерно распределяет все элементы по ширине flex-блока. Первый элемент вначале, последний в конце',
+  'space-around': 'Равномерно распределяет все элементы по ширине flex-блока. Все элементы имеют полноразмерное пространство с обоих концов',
+  'space-evenly': 'Равномерно распределяет все элементы по ширине flex-блока. Все элементы имеют равное пространство вокруг',
+  'stretch': 'Равномерно распределяет все элементы по ширине flex-блока. Все элементы имеют "авто-размер", чтобы соответствовать контейнеру',
+};
+justifyContent.addEventListener('change', (e) => selectHandler(e, demoFlex, demoJustifyLabel, "justify-content", "justifyContent", justifyContentCases));
+const alignItemsCases = {
+  'flex-start': 'Выравнивание элементов с начала в поперечной ос',
+  'flex-end': 'Выравнивание элементов с конца в поперечной оси',
+  'center': 'Центрирование элементов в поперечной оси',
+  'baseline': 'Выравнивание базовых линий элементов',
+  'stretch': 'Растянуть элементы в поперечной оси, чтобы они соответствовали контейнеру',
+};
+alignItems.addEventListener('change', (e) => selectHandler(e, demoFlex, demoAlignLabel, "align-items", "alignItems", alignItemsCases));
+const alignСontentCases = {
+  'flex-end': 'Расположить элементы flex в конце',
+  'flex-right': 'Расположить элементы flex в начале',
+  'start': 'Расположить элементы в начале',
+  'end': 'Расположить элементы в конце',
+  'center': 'Расположить элементы вокруг центра',
+  'safe center': 'Выравнивание переполнения (overflow), выравнивание слева с обрезкой элемента',
+  'unsafe center': 'Выравнивание переполнения (overflow) выравнивание по центру с обрезкой элемента',
+  'baseline': 'Выравнивание по базовой линии',
+  'first baseline': 'Выравнивание по базовой линии сверху',
+  'last baseline': 'Выравнивание по базовой линии снизу',
+  'space-between': 'Распределить элементы равномерно. Первый элемент находится на одном уровне с началом, последней - совпадает с концом',
+  'space-around': 'Распределить элементы равномерно. Элементы имеют половинное пространство на каждом конце',
+  'space-evenly': 'Распределить элементы равномерно. Элементы имеют одинаковое пространство вокруг них',
+  'stretch': 'Распределить элементы равномерно. Растянуть auto-размерные элементы, чтобы заполнить контейнер',
+  'normal': 'Выравнивание элементов с начала в поперечной оси'
+};
+alignСontent.addEventListener('change', (e) => selectHandler(e, demoFlex, demoAlignContentLabel, "align-content", "alignContent", alignСontentCases));
+// flex items
+// order
+const orderArgs = ['order', 'order', "Нормальный порядок, элемент не поменял свое место", "Порядок изменен, элемент занимает место №"];
+order5.addEventListener('input', (e) => numberHandler(e, flexibleTarget5, demoOrderLabel5, e.target.value == 0, ...orderArgs));
+order6.addEventListener('input', (e) => numberHandler(e, flexibleTarget6, demoOrderLabel6, e.target.value == 0, ...orderArgs));
+// flex-grow
+const growArgs = ['flex-grow', 'flexGrow', "Дефолтное увеличение элемента", "Относительное увеличение элемента - "];
+grow5.addEventListener('input', (e) => numberHandler(e, flexibleTarget5, demoGrowLabel5, e.target.value == 0, ...growArgs));
+grow6.addEventListener('input', (e) => numberHandler(e, flexibleTarget6, demoGrowLabel6, e.target.value == 0, ...growArgs));
+// flex-shrink
+const shrinkArgs = ['flex-shrink', 'flexShrink', "Дефолтное уменьшение элемента", "Относительное уменьшение элемента - "];
+shrink5.addEventListener('input', (e) => numberHandler(e, flexibleTarget5, demoShrinkLabel5, e.target.value == 1, ...shrinkArgs));
+shrink6.addEventListener('input', (e) => numberHandler(e, flexibleTarget6, demoShrinkLabel6, e.target.value == 1, ...shrinkArgs));
+// flex-basis
+const basisArgs = ['flex-basis', 'flexBasis', "Дефолтный размер элемента", "Размер элемента в px - ", true];
+basis5.addEventListener('input', (e) => numberHandler(e, flexibleTarget5, demoBasisLabel5, e.target.value == 100, ...basisArgs));
+basis6.addEventListener('input', (e) => numberHandler(e, flexibleTarget6, demoBasisLabel6, e.target.value == 100, ...basisArgs));
+// align-self
+const alignSelfCases = {
+  'stretch': 'Элемент расположен так, чтобы соответствовать контейнеру',
+  'center': 'Элемент расположен в центре контейнера',
+  'flex-start': 'Элемент располагается в начале контейнера',
+  'flex-end': 'Элемент располагается в конце контейнера',
+  'baseline': 'Элемент располагается на базовой линии контейнера',
+  'auto': 'Поведение по умолчанию (растягивается, если это свойство нельзя унаследовать от контейнера)'
+};
+alignSelf5.addEventListener('change', (e) => selectHandler(e, flexibleTarget5, demoAlignSelfLabel5, "align-self", "alignSelf", alignSelfCases));
+alignSelf6.addEventListener('change', (e) => selectHandler(e, flexibleTarget6, demoAlignSelfLabel6, "align-self", "alignSelf", alignSelfCases));

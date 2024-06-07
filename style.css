@@ -25,25 +25,22 @@ select, input {
   width: 250px;
   flex-grow: 1;
 }
-
-.label, [data-tooltip]:after {
+.label {
   margin: 5px;
 }
-
+.card {
+  overflow: visible;
+}
 /* html flow */
 #demo-model div:nth-child(1) {background: #120d14;}
 #demo-model div:nth-child(2) {background: #2e2e39;}
 #demo-model div:nth-child(3) {background: #686a77;}
 #demo-model div:nth-child(4) {background: #c3b1bd;}
 #demo-model div:nth-child(5) {background: #b7c2d4;}
-
 #demo-model.none div {display: none;}
 #demo-model.block div {display: block;}
 #demo-model.inline-block div {display: inline-block;}
 #demo-model.inline div {display: inline;}
-.floating.none {float: none;}
-.floating.left {float: left;}
-.floating.right {float: right;}
 
 @media (max-width: 992px) {
   .label {
