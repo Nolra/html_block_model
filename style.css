@@ -174,3 +174,12 @@ select, input {
 #demo-flex div:nth-child(7) {
   background: rgb(89, 89, 78);
 }
+.link-boxes {
+  display: flex;
+}
+.link-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 10px;
+}
